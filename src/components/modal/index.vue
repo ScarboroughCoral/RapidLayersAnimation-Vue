@@ -4,33 +4,20 @@
       <div
         class="modal"
         role="dialog"
+        :style="{'max-width':maxWidth}"
         aria-labelledby="modalTitle"
         aria-describedby="modalDescription"
       >
         <header class="modal-header" id="modalTitle">
-          <slot name="header">
-            This is the default tile!
-            <button
-              type="button"
-              class="btn-close"
-              @click="close"
-              aria-label="Close modal"
-            >x</button>
-          </slot>
+          <slot name="header">This is the default tile!</slot>
+          <button type="button" class="btn-close" @click="close" aria-label="Close modal">x</button>
         </header>
         <section class="modal-body" id="modalDescription">
           <slot name="body">I'm the default body!</slot>
         </section>
         <footer class="modal-footer">
-          <slot name="footer">
-            I'm the default footer!
-            <button
-              type="button"
-              class="btn-green"
-              @click="close"
-              aria-label="Close modal"
-            >Close me!</button>
-          </slot>
+          <slot name="footer">轮子是个好东西</slot>
+          <button type="button" class="btn-green" @click="close" aria-label="Close modal">关闭</button>
         </footer>
       </div>
     </div>
@@ -42,6 +29,12 @@ import Vue from "vue";
 
 export default Vue.extend({
   name: "modal",
+  props: {
+    maxWidth: {
+      type: String,
+      default: "400px"
+    }
+  },
   methods: {
     close() {
       this.$emit("close");
@@ -89,7 +82,7 @@ export default Vue.extend({
 
     .modal-footer {
       border-top: 1px solid #eeeeee;
-      justify-content: flex-end;
+      justify-content: space-between;
       .btn-green {
         color: white;
         background: #4aae9b;
@@ -100,6 +93,8 @@ export default Vue.extend({
     .modal-body {
       position: relative;
       padding: 20px 10px;
+      justify-content: flex-start;
+      text-align: start;
     }
   }
 }
