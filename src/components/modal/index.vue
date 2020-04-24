@@ -77,6 +77,7 @@ export default Vue.extend({
         font-weight: bold;
         color: #4aae9b;
         background: transparent;
+        outline: none;
       }
     }
 
